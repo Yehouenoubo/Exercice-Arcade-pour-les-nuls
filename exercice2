@@ -7,14 +7,14 @@ SCREEN_HEIGHT = 600
 
 # Liste pour les couleurs
 COLORS = [arcade.color.BLUE, arcade.color.FANDANGO_PINK,
-         arcade.color.FRENCH_ROSE, arcade.color.GOLDEN_POPPY]
+          arcade.color.FRENCH_ROSE, arcade.color.GOLDEN_POPPY]
+
 
 # Création d'une classe Cercle
 class Cercle():
 
     # Initialisation du rayon, centre x, centre y et couleur
     def __init__(self, rayon, centre_x, centre_y, color):
-
         self.rayon = rayon
         self.centre_x = centre_x
         self.centre_y = centre_y
@@ -22,7 +22,6 @@ class Cercle():
 
     # Dessin du cercle
     def draw(self):
-
         arcade.draw_circle_filled(self.centre_x, self.centre_y, self.rayon, self.color)
 
 
@@ -38,7 +37,6 @@ class MyGame(arcade.Window):
     def setup(self):
         # remplir la liste avec 20 objets de type Cercle
         for _ in range(20):
-
             rayon = random.randint(10, 50)
             center_x = random.randint(0 + rayon, SCREEN_WIDTH - rayon)
             center_y = random.randint(0 + rayon, SCREEN_HEIGHT - rayon)
@@ -50,29 +48,27 @@ class MyGame(arcade.Window):
     def on_draw(self):
         arcade.start_render()
         for cercle in self.liste_cercles:
-
             cercle.draw()
 
     def on_mouse_press(self, x, y, button, modifiers):
         self.centre_x = x
         self.centre_y = y
         for cercle in self.liste_cercles:
-            
+
             # Si on clique sur la souris gauche, ca efface le cercle
-            if button == arcade.MOUSE_BUTTON_LEFT and x > cercle.centre_x-cercle.rayon and x < cercle.centre_x+cercle.rayon and y > cercle.centre_y-cercle.rayon and y < cercle.centre_y+cercle.rayon:
+            if button == arcade.MOUSE_BUTTON_LEFT and x > cercle.centre_x - cercle.rayon and x < cercle.centre_x + cercle.rayon and y > cercle.centre_y - cercle.rayon and y < cercle.centre_y + cercle.rayon:
                 self.liste_cercles.remove(cercle)
-            
+
             # Si on clique sur la souris droite, ca change la couelur du cercle
-            if button == arcade.MOUSE_BUTTON_RIGHT and x > cercle.centre_x-cercle.rayon and x < cercle.centre_x+cercle.rayon and y > cercle.centre_y-cercle.rayon and y < cercle.centre_y+cercle.rayon
+            if button == arcade.MOUSE_BUTTON_RIGHT and x > cercle.centre_x - cercle.rayon and x < cercle.centre_x + cercle.rayon and y > cercle.centre_y - cercle.rayon and y < cercle.centre_y + cercle.rayon:
                 cercle.color = random.choice(COLORS)
 
 
-
 def main():
-   my_game = MyGame()
-   my_game.setup()
+    my_game = MyGame()
+    my_game.setup()
 
-   arcade.run()
+    arcade.run()
 
 
 main()
